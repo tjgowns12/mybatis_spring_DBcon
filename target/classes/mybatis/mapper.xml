@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.care.mybatis.myMapper">
+<!-- 쿼리문 작성 -->
+<select id="listAll" resultType="dto"><!-- resultType="com.care.dto.TestDTO"직접적으로 사용가능 mybatis에서 설정해서 dto라 쓸 수 있음 -->
+	select * from mybatis_test
+</select>
+<select id="list" resultType="dto">
+	select * from mybatis_test where num=#{num}<!-- #{num}dat에서 넘어온 값으로 보면된다 -->
+</select>
+<insert id="savedata" parameterType="dto"><!--parameterType= 매개변수 타입 (해당하는 타입으로 받겠다) -->
+insert into mybatis_test values(#{num},#{name},#{mydate})<!-- dto가 가지고 있는 데이터 (이름)-->
+</insert>
+<update id="updatedata" parameterType="com.care.dto.TestDTO">
+update mybatis_test set name=#{name},mydate=#{mydate} where num=#{num}
+</update>
+<delete id="delete" parameterType="String">
+delete from mybatis_test where num=#{num}
+</delete>
+	
+</mapper>
